@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "playmood-app",
+    "slug": "playmood-app",
+    "version": "1.0.0",
+    "entryPoint": "./index.js",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    }, 
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.rightsort.playmoodapp"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0ba33c01-0938-49b6-9b45-2d1485106904"
+      }
+    },
+    "owner": "rightsort"
+  }
+}
+

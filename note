@@ -1,0 +1,27 @@
+            <Pressable onPress={handleIconClick}>
+              <Image source={search_icon} style={styles.icon} />
+            </Pressable>
+            <Pressable onPress={handleIconClick}>
+              <Image source={home} style={styles.icon} />
+            </Pressable>
+            <Pressable onPress={handleIconClick}>
+              <Image source={thumbs} style={styles.icon} />
+            </Pressable>
+            <Pressable onPress={handleIconClick}>
+              <Image source={newp} style={styles.icon} />
+            </Pressable>
+            <Pressable onPress={handleIconClick}>
+              <Image source={snowflakes} style={styles.icon} />
+            </Pressable>
+            <Pressable onPress={handleIconClick}>
+              <Image source={location} style={styles.icon} />
+            </Pressable>
+            <Pressable onPress={handleIconClick}>
+              <Image source={schedule_white} style={styles.icon} />
+            </Pressable>
+            <Pressable onPress={handleIconClick}>
+              <Image source={favourite} style={styles.icon} />
+            </Pressable>
+            <Pressable onPress={handleIconClick}>
+              <Image source={categories} style={styles.icon} />
+            </Pressable>
