@@ -15,8 +15,8 @@ const LikeSlider = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user && user._id) {
-      dispatch(fetchLikedContent(user._id));
+    if (user) {
+      dispatch(fetchLikedContent());
     }
   }, [dispatch, user]);
 

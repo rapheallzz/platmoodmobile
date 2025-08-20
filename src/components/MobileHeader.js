@@ -66,26 +66,29 @@ export default function MobileHeader({ channels, set_channels }) {
         </View>
 
         {/* Horizontal Navigation Links */}
-        <View style={styles.navigation}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.navigation}>
           <Pressable style={styles.link} onPress={() => navigation.navigate('Home')}>
             <Text style={styles.linkText}>HOME</Text>
           </Pressable>
-          <Pressable style={styles.link}>
+           <Pressable style={styles.link} onPress={() => navigation.navigate('Creators')}>
+            <Text style={styles.linkText}>CREATORS</Text>
+          </Pressable>
+          <Pressable style={styles.link} onPress={() => navigation.navigate('Category', { categoryName: 'Channels' })}>
             <Text style={styles.linkText}>CHANNELS</Text>
           </Pressable>
-          <Pressable style={styles.link}>
+          <Pressable style={styles.link} onPress={() => handleIconClick()}>
             <Text style={styles.linkText}>SCHEDULE</Text>
           </Pressable>
-          <Pressable style={styles.link}>
+          <Pressable style={styles.link} onPress={() => navigation.navigate('Category', { categoryName: 'Spaces' })}>
             <Text style={styles.linkText}>SPACES</Text>
           </Pressable>
-          <Pressable style={styles.link}>
+           <Pressable style={styles.link} onPress={() => navigation.navigate('Category', { categoryName: 'Stories' })}>
             <Text style={styles.linkText}>STORIES</Text>
           </Pressable>
-          <Pressable style={styles.link}>
+          <Pressable style={styles.link} onPress={() => navigation.navigate('Category', { categoryName: 'Diaries' })}>
             <Text style={styles.linkText}>DIARIES</Text>
           </Pressable>
-        </View>
+        </ScrollView>
       </View>
 
       {/* Sidebar */}

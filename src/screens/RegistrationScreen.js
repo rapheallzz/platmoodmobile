@@ -13,14 +13,21 @@ export default function RegistrationScreen() {
   const navigation = useNavigation();
   const { isLoading, isError, isSuccess, message } = useSelector(state => state.auth);
 
-  const handleRegister = async () => {
-    dispatch(registerStart());
-    try {
-      await dispatch(register(name, email, password)); // Updated to pass name, email, and password
-      navigation.navigate('Home');
-    } catch (error) {
-      console.log('Registration error:', error);
-    }
+  const handleRegister = () => {
+    const userData = { name, email, password };
+    dispatch(register(userData))
+      .unwrap()
+      .then((response) => {
+        // On successful registration, navigate to the verification screen
+        navigation.navigate('EmailVerification', {
+          userId: response.user._id,
+          email: response.user.email,
+        });
+      })
+      .catch((error) => {
+        // The error is already handled by the slice, but you can log it here if needed
+        console.log('Registration failed:', error);
+      });
   };
 
   return (

@@ -7,7 +7,7 @@ import WatchlistSlider from '../components/WatchlistSlider';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faThumbsUp, faHeart, faUser, faList, faStar, faEye } from '@fortawesome/free-solid-svg-icons';
 import tw from 'tailwind-react-native-classnames'; 
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../features/authSlice';
 import { useNavigation } from '@react-navigation/native';
 
@@ -15,6 +15,7 @@ export default function Dashboard() {
   const [sliderType, setSliderType] = useState('likes');
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const { user } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
     dispatch(logout()).then(() => {
@@ -36,29 +37,49 @@ export default function Dashboard() {
     }
   };
 
+  const isAdmin = user && user.role === 'admin';
+  const isCreator = user && user.role === 'creator';
+
   return (
     <View style={tw`flex-1 bg-black`}>
       <MobileHeader />
       <ScrollView showsHorizontalScrollIndicator={false} style={styles.content}>
-        <View style={styles.profileContainer}>
-          <Image source={require('../../assets/images/10.png')} style={styles.profileImage} />
-          <Text style={styles.userName}>Charln</Text>
-          <Text style={styles.changeAccount}>Edit Profile</Text>
-          <Pressable style={styles.logOut} onPress={handleLogout}>
-            <Text style={styles.buttonText}>Logout</Text>
-          </Pressable>
-        </View>
+        {user ? (
+          <View style={styles.profileContainer}>
+            <Image
+              source={user.profileImage ? { uri: user.profileImage } : require('../../assets/images/10.png')}
+              style={styles.profileImage}
+            />
+            <Text style={styles.userName}>{user.name}</Text>
+            <Text style={styles.changeAccount}>Edit Profile</Text>
+            <Pressable style={styles.logOut} onPress={handleLogout}>
+              <Text style={styles.buttonText}>Logout</Text>
+            </Pressable>
+          </View>
+        ) : (
+          <View style={styles.profileContainer}>
+             <Pressable style={styles.logOut} onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.buttonText}>Login</Text>
+            </Pressable>
+          </View>
+        )}
 
         <View style={styles.adminButtons}>
-          <Pressable style={styles.adminButton} onPress={() => navigation.navigate('AdminPage')}>
-            <Text style={styles.buttonText}>Admin Page</Text>
-          </Pressable>
-          <Pressable style={styles.adminButton} onPress={() => navigation.navigate('ApplyAsCreator')}>
-            <Text style={styles.buttonText}>Apply as a Creator</Text>
-          </Pressable>
-          <Pressable style={styles.adminButton} onPress={() => navigation.navigate('PostVideoForReview')}>
-            <Text style={styles.buttonText}>Post a Video for Review</Text>
-          </Pressable>
+          {isAdmin && (
+            <Pressable style={styles.adminButton} onPress={() => navigation.navigate('AdminPage')}>
+              <Text style={styles.buttonText}>Admin Page</Text>
+            </Pressable>
+          )}
+          {!isCreator && (
+            <Pressable style={styles.adminButton} onPress={() => navigation.navigate('ApplyAsCreator')}>
+              <Text style={styles.buttonText}>Apply as a Creator</Text>
+            </Pressable>
+          )}
+          {isCreator && (
+            <Pressable style={styles.adminButton} onPress={() => navigation.navigate('PostVideoForReview')}>
+              <Text style={styles.buttonText}>Post a Video for Review</Text>
+            </Pressable>
+          )}
         </View>
 
         <View>
@@ -96,15 +117,15 @@ export default function Dashboard() {
         </View>
 
         <View style={styles.boxHolder}>
-          <View style={styles.boxText}>
-            <Text style={styles.slideText}>Activities</Text>
-          </View>
-          <View style={styles.boxText}>
-            <Text style={styles.slideText}>Manage Cookies</Text>
-          </View>
-          <View style={styles.boxText}>
-            <Text style={styles.slideText}>Remove Cache</Text>
-          </View>
+          <Pressable style={styles.boxText} onPress={() => navigation.navigate('Watchlist')}>
+            <Text style={styles.slideText}>My Watchlist</Text>
+          </Pressable>
+          <Pressable style={styles.boxText} onPress={() => navigation.navigate('PrivacyPolicy')}>
+            <Text style={styles.slideText}>Privacy Policy</Text>
+          </Pressable>
+          <Pressable style={styles.boxText} onPress={() => navigation.navigate('Cookies')}>
+            <Text style={styles.slideText}>Cookies Policy</Text>
+          </Pressable>
         </View>
 
         <View style={styles.adminButtons}>

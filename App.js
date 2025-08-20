@@ -12,6 +12,14 @@ import RegistrationScreen from './src/screens/RegistrationScreen';
 import SplashScreen from './src/screens/SplashScreen';
 import VideoScreen from './src/screens/VideoScreen';
 import CreatorChannel from './src/screens/ChannelScreen';
+import CreatorsScreen from './src/screens/CreatorsScreen';
+import CreatorProfileScreen from './src/screens/CreatorProfileScreen';
+import CategoryScreen from './src/screens/CategoryScreen';
+import WatchlistScreen from './src/screens/WatchlistScreen';
+import PrivacyPolicyScreen from './src/screens/PrivacyPolicyScreen';
+import CookiesScreen from './src/screens/CookiesScreen';
+import EmailVerificationScreen from './src/screens/EmailVerificationScreen';
+
 
 const Stack = createStackNavigator();
 

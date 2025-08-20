@@ -48,6 +48,24 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   thunkAPI.dispatch(clearUser());  // Clear user state on logout
 });
 
+export const verifyEmail = createAsyncThunk('auth/verifyEmail', async (data, thunkAPI) => {
+    try {
+        return await authService.verifyEmail(data);
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
+export const resendVerificationCode = createAsyncThunk('auth/resendVerificationCode', async (email, thunkAPI) => {
+    try {
+        return await authService.resendVerificationCode(email);
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
 
 const authSlice = createSlice({
   name: 'auth',
@@ -92,6 +110,32 @@ const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
+      })
+      .addCase(verifyEmail.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(verifyEmail.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload.message;
+      })
+      .addCase(verifyEmail.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(resendVerificationCode.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(resendVerificationCode.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload.message;
+      })
+      .addCase(resendVerificationCode.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });

@@ -1,7 +1,20 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API_URL = 'https://playmoodserver-stg-0fb54b955e6b.herokuapp.com/api/user/';
+const API_URL = 'https://playmoodserver-stg-0fb54b955e6b.herokuapp.com/api/users/';
+
+const verifyEmail = async ({ userId, verificationCode }) => {
+    const response = await axios.post(`${API_URL}verify-email`, {
+      userId,
+      verificationCode,
+    });
+    return response.data;
+};
+
+const resendVerificationCode = async (email) => {
+    const response = await axios.post(`${API_URL}reverify`, { email });
+    return response.data;
+};
 
 // Register user
 const register = async (userData) => {
@@ -45,6 +58,8 @@ const authService = {
   register,
   logout,
   login,
+  verifyEmail,
+  resendVerificationCode,
 };
 
 export default authService;

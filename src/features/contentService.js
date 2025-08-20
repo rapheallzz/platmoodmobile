@@ -22,8 +22,13 @@ const likeContent = async (contentId, userId) => {
   return response;
 };
 
-const fetchLikedContent = async (userId) => {
-  const response = await axios.get(`${API_URL}/user/getlike/${userId}`);
+const fetchLikedContent = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get(`${API_URL}/users/likes`, config);
   return response;
 };
 
