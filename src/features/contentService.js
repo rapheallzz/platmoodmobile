@@ -28,7 +28,7 @@ const fetchLikedContent = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   };
-  const response = await axios.get(`${API_URL}/users/likes`, config);
+  const response = await axios.get(`https://playmoodserver-stg-0fb54b955e6b.herokuapp.com/api/users/likes`, config);
   return response;
 };
 

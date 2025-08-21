@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, Pressable, StyleSheet, Modal } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet, Modal, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
