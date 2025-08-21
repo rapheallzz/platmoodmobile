@@ -17,7 +17,7 @@ const ContentDetailsModal = ({ visible, onClose, content }) => {
 
   const handlePlay = () => {
     onClose(); // Close this modal before navigating
-    navigation.navigate('Video', { videoUrl: content.video, title: content.title });
+    navigation.navigate('VideoScreen', { videoUrl: content.video, title: content.title });
   };
 
   const handleAddToWatchlist = () => {

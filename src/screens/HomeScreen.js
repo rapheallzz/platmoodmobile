@@ -29,10 +29,6 @@ export default function HomeScreen() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const user = useSelector((state) => state.user);
 
-  const handleTop10Press = () => {
-    navigation.navigate('ContentDetails'); 
-  };
-
   useEffect(() => {
     if (!isLoggedIn) {
       setTimeout(() => {
@@ -48,12 +44,11 @@ export default function HomeScreen() {
         <LikeCard data={likecard} />
         <View style={tw`flex mt-10`}> 
           {[Top10Slider, NewOn, Channel, Diaries, Spaces, Recommended, Interview, Fashion, Social, Report, Behind, Teen].map((Component, index) => (
-            <Pressable 
-              key={index} 
-              onPress={handleTop10Press} 
+            <View
+              key={index}
               style={tw`mr-4 ${isTV ? 'p-4' : 'p-2'}`}> 
               <Component /> 
-            </Pressable>
+            </View>
           ))}
         </View>
       </ScrollView>

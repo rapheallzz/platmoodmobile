@@ -26,10 +26,6 @@ const VideoScreen = ({ route }) => {
     navigation.navigate('NextVideoPage');
   };
 
-  const handleTop10Press = () => {
-    navigation.navigate('ContentDetails');
-  };
-
   const handleLikePress = () => {
     if (userId) {
       dispatch(likeContent({ contentId: _id, userId }));
@@ -190,12 +186,12 @@ const VideoScreen = ({ route }) => {
           <Text style={styles.buttonText}>Watch From Beginning</Text>
         </TouchableOpacity>
       </View> */}
-        <Pressable onPress={handleTop10Press}>
+        <View>
           <Recommended/> 
-        </Pressable>
-        <Pressable onPress={handleTop10Press}>
+        </View>
+        <View>
           <Watching/> 
-        </Pressable>
+        </View>
         {/* <NewOnPlaymood data={newonplaymood} />
         <Channels data={channel} />
         <Diaries data={diaries} />
