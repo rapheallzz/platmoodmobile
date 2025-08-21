@@ -1,7 +1,6 @@
 import React from 'react';
 import { Modal, View, Text, Pressable, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import tw from 'tailwind-react-native-classnames';
 
 export default function LoginModal({ visible, onClose }) {
   const navigation = useNavigation();
@@ -24,17 +23,17 @@ export default function LoginModal({ visible, onClose }) {
       onRequestClose={onClose}
     >
       <View style={styles.centeredView}>
-        <View style={tw`w-80 bg-white p-6 rounded-lg`}>
-          <Pressable style={[tw`absolute top-0 right-0 m-2 p-2 bg-gray-500 rounded-full z-10`]} onPress={onClose}>
-            <Text style={tw`text-white text-center`}>X</Text>
+        <View style={styles.modalView}>
+          <Pressable style={styles.closeButton} onPress={onClose}>
+            <Text style={styles.closeButtonText}>X</Text>
           </Pressable>
-          <Text style={tw`text-lg font-bold mb-4`}>Welcome!</Text>
-          <Text style={tw`text-base mb-4`}>Please log in or register to continue.</Text>
-          <Pressable style={[tw`mb-4 p-2 rounded`, { backgroundColor: '#541011' }]} onPress={navigateToLogin}>
-            <Text style={tw`text-white text-center`}>Log In</Text>
+          <Text style={styles.modalTitle}>Welcome!</Text>
+          <Text style={styles.modalText}>Please log in or register to continue.</Text>
+          <Pressable style={styles.button} onPress={navigateToLogin}>
+            <Text style={styles.buttonText}>Log In</Text>
           </Pressable>
-          <Pressable style={[tw`mb-4 p-2 rounded`, { backgroundColor: '#541011' }]} onPress={navigateToRegister}>
-            <Text style={tw`text-white text-center`}>Register</Text>
+          <Pressable style={styles.button} onPress={navigateToRegister}>
+            <Text style={styles.buttonText}>Register</Text>
           </Pressable>
         </View>
       </View>
@@ -48,5 +47,59 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalView: {
+    width: '80%',
+    maxWidth: 320,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    backgroundColor: '#ccc',
+    borderRadius: 15,
+    width: 30,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  closeButtonText: {
+      color: 'white',
+      fontWeight: 'bold',
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 15,
+  },
+  modalText: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  button: {
+    backgroundColor: '#541011',
+    borderRadius: 5,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    width: '100%',
+    marginBottom: 10,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 });
