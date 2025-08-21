@@ -13,7 +13,7 @@ export default function CreatorsScreen() {
   useEffect(() => {
     const fetchCreators = async () => {
       try {
-        const response = await axios.get('https://playmoodserver-stg-0fb54b955e6b.herokuapp.com/api/channels');
+        const response = await axios.get('https://playmoodserver-stg-0fb54b955e6b.herokuapp.com/api/users/creators');
         setCreators(response.data);
         setLoading(false);
       } catch (err) {

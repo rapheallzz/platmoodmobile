@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, View, Text, Pressable } from 'react-native';
+import { Modal, View, Text, Pressable, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import tw from 'tailwind-react-native-classnames';
 
@@ -23,7 +23,7 @@ export default function LoginModal({ visible, onClose }) {
       visible={visible}
       onRequestClose={onClose}
     >
-      <View style={tw`flex-1 justify-center items-center bg-black bg-opacity-50`}>
+      <View style={styles.centeredView}>
         <View style={tw`w-80 bg-white p-6 rounded-lg`}>
           <Pressable style={[tw`absolute top-0 right-0 m-2 p-2 bg-gray-500 rounded-full z-10`]} onPress={onClose}>
             <Text style={tw`text-white text-center`}>X</Text>
@@ -41,3 +41,12 @@ export default function LoginModal({ visible, onClose }) {
     </Modal>
   );
 }
+
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+});
