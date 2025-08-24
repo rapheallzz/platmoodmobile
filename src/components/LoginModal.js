@@ -23,7 +23,7 @@ export default function LoginModal({ visible, onClose }) {
       visible={visible}
       onRequestClose={onClose}
     >
-      <View style={tw`flex-1 justify-center items-center bg-black bg-opacity-50`}>
+      <View style={tw`flex-1 justify-center items-center`}>
         <View style={tw`w-80 bg-white p-6 rounded-lg`}>
           <Pressable style={[tw`absolute top-0 right-0 m-2 p-2 bg-gray-500 rounded-full z-10`]} onPress={onClose}>
             <Text style={tw`text-white text-center`}>X</Text>
