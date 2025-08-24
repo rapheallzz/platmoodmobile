@@ -16,7 +16,6 @@ import Report from '../components/Report';
 import Teen from '../components/Teen';
 import tw from 'tailwind-react-native-classnames';
 import { useSelector } from 'react-redux';
-import LoginModal from '../components/LoginModal';
 import Behind from '../components/Behind';
 
 const { width } = Dimensions.get('window');
@@ -25,8 +24,6 @@ const isTV = width >= 1024;
 export default function HomeScreen() {
   const navigation = useNavigation(); 
   const [likecard, setLikeCard] = useState([1]);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const user = useSelector((state) => state.user);
 
   const handleTop10Press = () => {
@@ -34,12 +31,10 @@ export default function HomeScreen() {
   };
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      setTimeout(() => {
-        setIsModalVisible(true);
-      }, 8000);
+    if (!user.id) {
+      navigation.navigate('Login');
     }
-  }, [isLoggedIn]);
+  }, [user.id, navigation]);
 
   return (
     <View style={tw`flex-1 bg-black`}>
@@ -57,7 +52,6 @@ export default function HomeScreen() {
           ))}
         </View>
       </ScrollView>
-      <LoginModal visible={isModalVisible} onClose={() => setIsModalVisible(false)} />
     </View>
   );
 }
