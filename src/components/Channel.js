@@ -14,7 +14,7 @@ const Channel = () => {
 
   const fetchCreators = async () => {
     try {
-      const response = await fetch('https://playmoodserver-stg-0fb54b955e6b.herokuapp.com/api/user/creators', {
+      const response = await fetch('https://playmoodserver-stg-0fb54b955e6b.herokuapp.com/api/users/creators', {
         headers: {
           'Cache-Control': 'no-cache',
           'Pragma': 'no-cache',

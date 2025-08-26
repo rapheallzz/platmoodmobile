@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   overlayTextContainer: {
     alignItems: 'center',
     paddingHorizontal: 10,
-    paddingTop: 250,
+    paddingTop: 350,
     paddingBottom: 20,
   },
   overlayButtonsContainer: {
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     right: 0,
     flexDirection: 'row',
     alignItems: 'right',
-    paddingLeft: 160,
+    paddingLeft: 190,
   },
   button: {
     alignItems: 'left',

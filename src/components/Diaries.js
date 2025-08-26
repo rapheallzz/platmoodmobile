@@ -5,22 +5,31 @@ import ContentKard from './ContentCardRound';
 const { width: screenWidth } = Dimensions.get('window');
 
 const Diaries = () => {
-  const [data, setData] = useState([]);
+   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchData();
+    fetchCreators();
   }, []);
 
-  const fetchData = async () => {
+  const fetchCreators = async () => {
     try {
-      const response = await fetch('https://playmoodserver-stg-0fb54b955e6b.herokuapp.com/api/content/');
+      const response = await fetch('https://playmoodserver-stg-0fb54b955e6b.herokuapp.com/api/users/creators', {
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+        },
+      });
       const jsonData = await response.json();
-      const top10Data = jsonData.filter(item => item.category === 'Top 10').slice(0, 10);
-      setData(top10Data);
+      if (Array.isArray(jsonData)) {
+        setData(jsonData);
+      } else {
+        console.error('Response data is not an array:', jsonData);
+      }
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching creators:', error);
       setLoading(false);
     }
   };
@@ -31,7 +40,7 @@ const Diaries = () => {
 
   return (
     <View style={styles.sliderContainer}>
-      <Text style={styles.headerText}>Diaries</Text>
+      <Text style={styles.headerText}>Channel</Text>
       <ScrollView 
         horizontal 
         showsHorizontalScrollIndicator={false}
@@ -67,5 +76,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
 });
-
 export default Diaries;
