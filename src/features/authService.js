@@ -1,7 +1,7 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API_URL = 'https://playmoodserver-stg-0fb54b955e6b.herokuapp.com/api/user/';
+const API_URL = 'https://playmoodserver-stg-0fb54b955e6b.herokuapp.com/api/users/';
 
 // Register user
 const register = async (userData) => {
