@@ -6,7 +6,7 @@ import Recommended from '../components/Recommended';
 import Watching from '../components/Watching';
 import playmood from '../../assets/PLAYMOOD_DEF.png';
 import profile from '../../assets/icon-profile.png';
-import { useVideoPlayer, VideoView } from 'expo-video';
+import { Video } from 'expo-av';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faThumbsUp, faHeart, faUser, faList, faStar, faEye, faBell, faDollarSign, faLink, faPlay  } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesome } from '@expo/vector-icons';
@@ -19,10 +19,6 @@ const VideoScreen = ({ route }) => {
   const { title, credits, desc, movie, _id } = route.params;
   const user = useSelector((state) => state.user);
   const userId = user ? user._id : null;
-  const player = useVideoPlayer(movie, player => {
-    player.loop = true;
-    player.play();
-  });
 
   console.log('User state in video:', user);
 
@@ -96,10 +92,15 @@ const VideoScreen = ({ route }) => {
 <ScrollView showsHorizontalScrollIndicator={false} style={styles.content}>
        
 <View style={styles.videoContainer}>
-  <VideoView
+  <Video
     style={styles.video}
-    player={player}
-    allowsFullscreen
+    source={{
+      uri: movie,
+    }}
+    useNativeControls
+    resizeMode="contain"
+    isLooping
+    shouldPlay
   />
 </View>
 
